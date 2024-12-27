@@ -134,10 +134,11 @@
   display: flex;
 }
 #wrap #header .row2 #nav > ul > li > .sub ul li span {
-  width: 110px;
+  width: 120px;
 }
 #wrap #header .row2 #nav > ul > li > .sub ul li span a {
   font-size: 1rem;
+  letter-spacing: -1px;
   font-weight: 500;
   color: #fff;
   background: rgb(50, 170, 240);
@@ -195,7 +196,7 @@
     }
     100% {
       left: 100%;
-    }
+    } /* 오른쪽 끝 */
   }
   #wrap #header .row2.on {
     animation: mobile_on 0.3s both;
@@ -206,7 +207,7 @@
     }
     100% {
       left: 0%;
-    }
+    } /* 왼쪽 시작 */
   }
   #wrap #header .row2 #nav {
     padding: 10px 0;
@@ -214,13 +215,61 @@
   #wrap #header .row2 #nav > ul > li:nth-last-child(1) {
     border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   }
+  #wrap #header .row2 #nav > ul > li:hover {
+    background: none;
+  }
   #wrap #header .row2 #nav > ul > li > .sub {
     position: relative;
     top: 0;
     left: 0;
     width: 100%;
     background: rgb(50, 170, 240);
-    display: none;
+    height: 0;
+    overflow: hidden;
+  }
+  #wrap #header .row2 #nav > ul > li > .sub.sub1 {
+    animation: sub1 0.3s both ease-in-out;
+  }
+  @keyframes sub1 {
+    0% {
+      height: 0;
+    }
+    100% {
+      height: 161.5px;
+    }
+  }
+  #wrap #header .row2 #nav > ul > li > .sub.sub2 {
+    animation: sub2 0.3s both ease-in-out;
+  }
+  @keyframes sub2 {
+    0% {
+      height: 0;
+    }
+    100% {
+      height: 126.125px;
+    }
+  }
+  #wrap #header .row2 #nav > ul > li > .sub.sub3 {
+    animation: sub3 0.3s both ease-in-out;
+  }
+  @keyframes sub3 {
+    0% {
+      height: 0;
+    }
+    100% {
+      height: 126.125px;
+    }
+  }
+  #wrap #header .row2 #nav > ul > li > .sub.sub4 {
+    animation: sub4 0.3s both ease-in-out;
+  }
+  @keyframes sub4 {
+    0% {
+      height: 0;
+    }
+    100% {
+      height: 90.75px;
+    }
   }
   #wrap #header .row2 #nav > ul > li > .sub ul {
     padding: 10px 20px;
@@ -229,9 +278,6 @@
     width: 100%;
     padding: 10px 0;
     display: flex;
-  }
-  #wrap #header .row2 #nav > ul > li > .sub ul li span {
-    width: 110px;
   }
   #wrap #header .row2 #nav > ul > li > .sub ul li span a {
     font-size: 1rem;
@@ -253,6 +299,21 @@
   }
   #wrap #header .row2 #nav > ul > li > .sub ul li span a {
     padding: 6px 10px;
+  }
+}
+@media all and (max-width: 420px) {
+  #wrap #header .row1 h1 a {
+    font-size: 1.571428571rem;
+  }
+  #wrap #header .row2 #nav > ul {
+    padding: 10px 0;
+  }
+  #wrap #header .row2 #nav > ul > li > .sub ul li span {
+    width: auto;
+  }
+  #wrap #header .row2 #nav > ul > li > .sub ul li span a {
+    padding: 6px 2px;
+    letter-spacing: -1px;
   }
 }
 #wrap #main {
@@ -437,6 +498,11 @@
   font-size: 21px;
   color: #fff;
   text-indent: 0;
+}
+@media all and (max-width: 1100px) {
+  #wrap #main #section1 .page-btn-box {
+    display: none;
+  }
 }
 @media all and (max-width: 1100px) {
   #wrap #main #section1 {
@@ -876,6 +942,8 @@
   display: flex;
 }
 #wrap .layer-popup .container {
+  margin: 0 auto;
+  max-width: 600px;
   width: 600px;
   height: auto;
   background: #fff;

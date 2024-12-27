@@ -122,10 +122,11 @@
                                     padding: 10px 0;
                                     display: flex;
                                     span {
-                                        width:110px;
+                                        width:120px;
                                         a {    
                                             // font-size: 14px;
                                             font-size: 1rem;
+                                            letter-spacing: -1px;
                                             font-weight: 500;
                                             color: #fff;
                                             background: rgba(50,170,240, 1);
@@ -145,6 +146,7 @@
 
     }
 
+    // 모바일 네비게이션: 1. 메인메뉴  =>  2. 서브메뉴
     @media all and (max-width: 1100px) {
         #header {            
             width: 100%;
@@ -190,7 +192,7 @@
                 animation: mobile_off 0.3s both;
                 @keyframes mobile_off {                
                     0%   {left:   0%;}
-                    100% {left: 100%;}                    
+                    100% {left: 100%;}  /* 오른쪽 끝 */                  
                 }
 
                 &.on {
@@ -198,7 +200,7 @@
                 }               
                 @keyframes mobile_on {                
                     0%   {left: 100%;}
-                    100% {left:   0%;}                    
+                    100% {left:   0%;} /* 왼쪽 시작 */                   
                 }
 
                 #nav {
@@ -208,21 +210,56 @@
                             &:nth-last-child(1){
                                 border-bottom: 1px solid rgba(255,255,255, 0.15);
                             }
-                            > .sub {
+                            
+                            &:hover {
+                                // background: rgba(50,170,240, 0);
+                                background: none;
+                            }
+
+                            > .sub { // sub1 4행(35.375px*4)  sub2 3행(35.375px*3) sub3 3행(35.375px*3)  sub4 2행(35.375px*2) 
                                 position: relative;
                                 top: 0;
                                 left: 0;    
                                 width: 100%;
                                 background: rgba(50,170,240, 1);
-                                display: none;
+                                height: 0;  // 슬라이드 다운 애니메이션 구현
+                                overflow: hidden; 
+                                // display: none; 컴포넌트기반에서는 펼쳐져 있어야 한다.
+                                &.sub1 {
+                                    animation: sub1 0.3s both ease-in-out;
+                                }
+                                @keyframes sub1 {
+                                      0% {height: 0;}
+                                    100% {height: 35.375px * 4 + 10 + 10;}
+                                }
+                                &.sub2 {
+                                    animation: sub2 0.3s both ease-in-out;
+                                }
+                                @keyframes sub2 {
+                                      0% {height: 0;}
+                                    100% {height: 35.375px * 3 + 10 + 10;}
+                                }
+                                &.sub3 {
+                                    animation: sub3 0.3s both ease-in-out;
+                                }
+                                @keyframes sub3 {
+                                      0% {height: 0;}
+                                    100% {height: 35.375px * 3 + 10 + 10;}
+                                }
+                                &.sub4 {
+                                    animation: sub4 0.3s both ease-in-out;
+                                }
+                                @keyframes sub4 {
+                                      0% {height: 0;}
+                                    100% {height: 35.375px * 2 + 10 + 10;}
+                                }
                                 ul {
                                     padding: 10px 20px;
-                                    li {
+                                    li { // 35.375
                                         width: 100%;
                                         padding: 10px 0;
                                         display: flex;
-                                        span {
-                                            width:110px;                                            
+                                        span {                                                                                     
                                             a {    
                                                 // font-size: 14px;
                                                 font-size: 1rem;
@@ -278,6 +315,46 @@
             
         }
     }
+    @media all and (max-width: 420px) {
+        #header {                       
+            .row1 {
+                h1 {
+                    a {
+                        // font-size: 25px;  
+                        // font-size: 22px;  1.571428571 = 22/14 
+                        font-size: 1.571428571rem;                      
+                    }
+                }
+            }
+            .row2 {                
+                #nav {
+                    > ul {
+                        padding: 10px 0;
+                        > li {
+                            > .sub {
+                                ul {
+                                    li {
+                                        span {
+                                            width: auto;
+                                            a {    
+                                                padding: 6px 2px;
+                                                letter-spacing: -1px;
+                                            }
+                                        }
+                                    }
+                                }
+                            }                        
+                        }
+                    }
+                }
+            }
+            
+        }
+    }
+
+
+
+
 
     #main {
         width: calc(100% - 200px);
@@ -486,7 +563,11 @@
                 }                  
             }
 
-
+            @media all and (max-width:1100px) {
+                .page-btn-box {
+                    display: none;
+                }  
+            }
 
         }
 
@@ -1019,6 +1100,8 @@
             display: flex;
         }
         .container {
+            margin: 0 auto;
+            max-width: 600px;
             width: 600px;
             height: auto;
             background: #fff;
